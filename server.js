@@ -67,7 +67,7 @@ async function createServer(
         return res.redirect(301, context.url)
       }
 
-      const html = template.replace(`<!--takurinton-->`, _html).replace(`___takurinton`, JSON.stringify(json))
+      const html = template.replace(`<!--takurinton-->`, _html).replace(`_takurinton`, JSON.stringify(json))
       res.status(200).set({ 'Content-Type': 'text/html' })
       res.send(html)
 
