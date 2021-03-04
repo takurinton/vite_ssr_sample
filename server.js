@@ -2,6 +2,7 @@
 const fs = require('fs')
 const path = require('path')
 const express = require('express')
+const fetch = require('node-fetch')
 
 const isTest = process.env.NODE_ENV === 'test' || !!process.env.VITE_TEST_BUILD
 
@@ -29,7 +30,6 @@ async function createServer(
         middlewareMode: true
       }
     })
-    // use vite's connect instance as middleware
     app.use(vite.middlewares)
   } else {
     app.use(require('compression')())
@@ -40,9 +40,15 @@ async function createServer(
     )
   }
 
-  app.use('*', async (req, res) => {
+  app.use(async (req, res) => {
     try {
       const url = req.originalUrl
+      const path = req.path
+      let json = {}
+
+      if (path === '/') {
+        json = await getPost()
+      }
 
       let template, render
       if (!isProd) {
@@ -55,21 +61,27 @@ async function createServer(
       }
 
       const context = {}
-      const appHtml = render(url, context)
+      const _html = render(url, context, json)
 
       if (context.url) {
         return res.redirect(301, context.url)
       }
 
-      const html = template.replace(`<!--app-html-->`, appHtml)
+      const html = template.replace(`<!--takurinton-->`, _html).replace(`___takurinton`, JSON.stringify(json))
+      res.status(200).set({ 'Content-Type': 'text/html' })
+      res.send(html)
 
-      res.status(200).set({ 'Content-Type': 'text/html' }).end(html)
     } catch (e) {
       !isProd && vite.ssrFixStacktrace(e)
       console.log(e.stack)
       res.status(500).end(e.stack)
     }
   })
+
+  const getPost = async () => {
+    return await fetch('https://api.takurinton.com/blog/v1/')
+    .then(res => res.json())
+  } 
 
   return { app, vite }
 }

@@ -49,7 +49,7 @@ function App() {
   })));
 }
 function render(url, context) {
-  return ReactDOMServer__default["default"].renderToString(/* @__PURE__ */ React__default["default"].createElement(reactRouterDom.StaticRouter, {
+  return ReactDOMServer__default["default"].renderToStaticMarkup(/* @__PURE__ */ React__default["default"].createElement(reactRouterDom.StaticRouter, {
     location: url,
     context
   }, /* @__PURE__ */ React__default["default"].createElement(App, null)));

@@ -74,4 +74,4 @@ function App() {
     }, /* @__PURE__ */ react.createElement(RouteComp, null));
   })));
 }
-reactDom.hydrate(/* @__PURE__ */ react.createElement(BrowserRouter, null, /* @__PURE__ */ react.createElement(App, null)), document.getElementById("app"));
+reactDom.hydrate(/* @__PURE__ */ react.createElement(BrowserRouter, null, /* @__PURE__ */ react.createElement(App, null)), document.getElementById("takurinton"));
