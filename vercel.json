@@ -12,7 +12,7 @@
         }, 
         {
             "src": "/(.*)",
-            "dest": "server/entry-server.js"
+            "dest": "src/entry-server.js"
         }
     ]
 }
