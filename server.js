@@ -47,7 +47,7 @@ async function createServer(
       let json = {}
 
       if (path === '/') {
-        json = await getPost()
+        json = await getPosts()
       }
 
       let template, render
@@ -78,7 +78,7 @@ async function createServer(
     }
   })
 
-  const getPost = async () => {
+  const getPosts = async () => {
     return await fetch('https://api.takurinton.com/blog/v1/')
     .then(res => res.json())
   } 
