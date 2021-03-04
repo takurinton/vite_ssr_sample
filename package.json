@@ -12,6 +12,8 @@
     "debug": "node --inspect-brk server"
   },
   "dependencies": {
+    "fastify": "^3.13.0",
+    "preact": "^10.5.12",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router": "^5.2.0",

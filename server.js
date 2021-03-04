@@ -46,7 +46,6 @@ async function createServer(
 
       let template, render
       if (!isProd) {
-        // always read fresh template in dev
         template = fs.readFileSync(resolve('index.html'), 'utf-8')
         template = await vite.transformIndexHtml(url, template)
         render = (await vite.ssrLoadModule('/src/entry-server.jsx')).render
@@ -59,7 +58,6 @@ async function createServer(
       const appHtml = render(url, context)
 
       if (context.url) {
-        // Somewhere a `<Redirect>` was rendered
         return res.redirect(301, context.url)
       }
 
@@ -76,6 +74,7 @@ async function createServer(
   return { app, vite }
 }
 
+
 if (!isTest) {
   createServer().then(({ app }) =>
     app.listen(3000, () => {
@@ -84,5 +83,4 @@ if (!isTest) {
   )
 }
 
-// for test use
 exports.createServer = createServer

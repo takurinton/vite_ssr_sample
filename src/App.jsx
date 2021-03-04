@@ -1,7 +1,5 @@
 import { Link, Route, Switch } from 'react-router-dom'
 
-// Auto generates routes from files under ./pages
-// https://vitejs.dev/guide/features.html#glob-import
 const pages = import.meta.globEager('./pages/*.jsx')
 
 const routes = Object.keys(pages).map((path) => {
