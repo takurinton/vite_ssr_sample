@@ -7,10 +7,6 @@
     ],
     "routes": [
         {
-            "src": "/client/index.html",
-            "dest": "/client/index.html"
-        }, 
-        {
             "src": "/(.*)",
             "dest": "src/entry-server.jsx"
         }
