@@ -4,10 +4,6 @@ import { App } from './App'
 
 export function render(url, context, json) {
   return r(
-    <LocationProvider>
-      <Router>
-        <App {...json} />
-      </Router>
-    </LocationProvider>
+    <App {...json} />
   )
 }

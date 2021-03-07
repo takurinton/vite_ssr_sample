@@ -1,3 +1,5 @@
+import { Link } from 'preact-router/match'
+
 const pages = import.meta.globEager('./pages/*.jsx')
 
 const routes = Object.keys(pages).map((path) => {
