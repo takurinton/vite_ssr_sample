@@ -1,12 +1,12 @@
-import ReactDOM from 'react-dom'
-import { BrowserRouter } from 'react-router-dom'
+import hydrate from 'preact-iso/hydrate';
+import { Router } from 'preact-router'
 import { App } from './App'
 
 const json = JSON.parse(document.getElementById('json').getAttribute('data-json'));
 
-ReactDOM.hydrate(
-  <BrowserRouter>
+hydrate(
+  <Router>
     <App {...json} />
-  </BrowserRouter>,
+  </Router>,
   document.getElementById('takurinton')
 )

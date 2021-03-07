@@ -1,5 +1,3 @@
-import { Link, Route, Switch } from 'react-router-dom'
-
 const pages = import.meta.globEager('./pages/*.jsx')
 
 const routes = Object.keys(pages).map((path) => {
@@ -25,15 +23,11 @@ export function App(json) {
           })}
         </ul>
       </nav>
-      <Switch>
-        {routes.map(({ path, component: RouteComp }) => {
-          return (
-            <Route key={path} path={path}>
-              <RouteComp {...json} />
-            </Route>
-          )
-        })}
-      </Switch>
+      {routes.map(({ path, component: RouteComp }) => {
+        return (
+          <RouteComp href={path} {...json} />
+        )
+      })}
     </>
   )
 }

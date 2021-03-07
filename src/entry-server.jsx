@@ -1,11 +1,13 @@
-import ReactDOMServer from 'react-dom/server'
-import { StaticRouter } from 'react-router-dom'
+import { render } from 'preact-render-to-string' 
+import { LocationProvider, Router } from 'preact-iso/router';
 import { App } from './App'
 
 export function render(url, context, json) {
-  return ReactDOMServer.renderToStaticMarkup(
-    <StaticRouter location={url} context={context}>
-      <App {...json} />
-    </StaticRouter>
+  return render(
+    <LocationProvider>
+      <Router>
+        <App {...json} />
+      </Router>
+    </LocationProvider>
   )
 }
