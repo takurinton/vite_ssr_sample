@@ -12,7 +12,10 @@
     "debug": "node --inspect-brk server"
   },
   "dependencies": {
+    "@prefresh/vite": "^2.1.0",
     "node-fetch": "^2.6.1",
+    "preact-iso": "^1.0.1",
+    "preact-render-to-string": "^5.1.12",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router": "^5.2.0",
