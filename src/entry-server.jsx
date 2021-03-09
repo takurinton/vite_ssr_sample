@@ -1,11 +1,17 @@
-import ReactDOMServer from 'react-dom/server'
-import { StaticRouter } from 'react-router-dom'
+import { render as r } from 'preact-render-to-string' 
+import { Router } from 'preact-router' 
 import { App } from './App'
 
+const customHistory = {
+  location: { pathname: "/" },
+  listen: () => {}
+};
+
 export function render(url, context, json) {
-  return ReactDOMServer.renderToStaticMarkup(
-    <StaticRouter location={url} context={context}>
+  return r(
+    <Router url={url} history={customHistory}>
       <App {...json} />
-    </StaticRouter>
+    </Router>, 
+    context
   )
 }

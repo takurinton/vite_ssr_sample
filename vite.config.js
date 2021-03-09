@@ -1,14 +1,17 @@
-const reactRefresh = require('@vitejs/plugin-react-refresh')
+import { defineConfig } from 'vite'
+import preactRefresh from '@prefresh/vite'
 
 /**
  * @type {import('vite').UserConfig}
  */
-module.exports = {
-  plugins: [reactRefresh()],
+module.exports = defineConfig({
   esbuild: {
-    jsxInject: `import React from 'react';`
+    jsxFactory: 'h',
+    jsxFragment: 'Fragment',
+    jsxInject: `import { h, Fragment } from 'preact'`
   },
+  plugins: [preactRefresh()],
   build: {
     minify: false
   }
-}
+})

@@ -1,4 +1,4 @@
-import { Link, Route, Switch } from 'react-router-dom'
+import { Link } from 'preact-router/match'
 
 const pages = import.meta.globEager('./pages/*.jsx')
 
@@ -19,21 +19,17 @@ export function App(json) {
           {routes.map(({ name, path }) => {
             return (
               <li key={path}>
-                <Link to={path}>{name}</Link>
+                <Link href={path}>{name}</Link>
               </li>
             )
           })}
         </ul>
       </nav>
-      <Switch>
-        {routes.map(({ path, component: RouteComp }) => {
-          return (
-            <Route key={path} path={path}>
-              <RouteComp {...json} />
-            </Route>
-          )
-        })}
-      </Switch>
+      {routes.map(({ path, component: RouteComp }) => {
+        return (
+          <RouteComp href={path} {...json} />
+        )
+      })}
     </>
   )
 }
