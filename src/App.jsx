@@ -19,7 +19,7 @@ export function App(json) {
           {routes.map(({ name, path }) => {
             return (
               <li key={path}>
-                <Link to={path}>{name}</Link>
+                <Link href={path}>{name}</Link>
               </li>
             )
           })}
